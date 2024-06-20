@@ -3,5 +3,5 @@ CREATE TABLE Vehicle (
                          name VARCHAR(255),
                          vehicle_brand VARCHAR(255),
                          vehicle_type VARCHAR(255),
-                         year VARCHAR(4)
+                         vehicle_year VARCHAR(4)
 );

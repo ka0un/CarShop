@@ -18,11 +18,11 @@
 
     <insert id="insert" parameterType="com.hapangama.carshop.vehicle.model.Vehicle">
         INSERT INTO Vehicle (name, vehicle_brand, vehicle_type, year)
-        VALUES (#{name}, #{vehicleBrand}, #{vehicleType}, #{year})
+        VALUES (#{name}, #{vehicleBrand}, #{vehicleType}, #{vehicle_year})
     </insert>
 
     <update id="update" parameterType="com.hapangama.carshop.vehicle.model.Vehicle">
-        UPDATE Vehicle SET name = #{name}, vehicle_brand = #{vehicleBrand}, vehicle_type = #{vehicleType}, year = #{year} WHERE id = #{id}
+        UPDATE Vehicle SET name = #{name}, vehicle_brand = #{vehicleBrand}, vehicle_type = #{vehicleType}, year = #{vehicle_year} WHERE id = #{id}
     </update>
 
     <delete id="delete">
