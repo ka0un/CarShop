@@ -10,5 +10,5 @@ public class Vehicle {
     private String name;
     private VehicleBrand vehicleBrand;
     private VehicleType vehicleType;
-    private String year;
+    private String vehicleYear;
 }
