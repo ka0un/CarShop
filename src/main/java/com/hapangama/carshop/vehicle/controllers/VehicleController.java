@@ -18,72 +18,74 @@ public class VehicleController {
     }
 
     @GetMapping
-    public List<Vehicle> getAllVehicles() {
+    public ResponseEntity<List<Vehicle>>  getAllVehicles() {
 
         //handle exceptions
         if (vehicleService.getVehicles().isEmpty()) {
-            ResponseEntity.notFound().build();
+            return ResponseEntity.status(404).build();
         }
 
-        return vehicleService.getVehicles();
+        return ResponseEntity.ok(vehicleService.getVehicles());
     }
 
     @GetMapping("/{id}")
-    public Vehicle getVehicleById(@PathVariable Integer id) {
+    public ResponseEntity<Vehicle> getVehicle(@PathVariable Integer id) {
 
         if (id == null) {
-            ResponseEntity.badRequest().build();
+            return ResponseEntity.badRequest().build();
         }
 
         //if request id is not found
         if (vehicleService.getVehicle(id) == null) {
-            ResponseEntity.notFound().build();
+            return ResponseEntity.notFound().build();
         }
 
 
-        return vehicleService.getVehicle(id);
+        return ResponseEntity.ok(vehicleService.getVehicle(id));
     }
 
     @PostMapping
-    public void createVehicle(@RequestBody Vehicle vehicle) {
+    public ResponseEntity<Void> addVehicle(@RequestBody Vehicle vehicle) {
 
         if (vehicle == null) {
-            ResponseEntity.badRequest().build();
+            return ResponseEntity.badRequest().build();
         }
 
-
         vehicleService.addVehicle(vehicle);
+        return ResponseEntity.status(201).build();
     }
 
     @PutMapping("/{id}")
-    public void updateVehicle(@PathVariable Integer id, @RequestBody Vehicle vehicle) {
+    public ResponseEntity<Void> updateVehicle(@PathVariable Integer id, @RequestBody Vehicle vehicle) {
 
         if (id == null || vehicle == null) {
-            ResponseEntity.badRequest().build();
+            return ResponseEntity.badRequest().build();
         }
 
         //if update id is not found
         if (vehicleService.getVehicle(id) == null) {
-            ResponseEntity.notFound().build();
+            return ResponseEntity.notFound().build();
         }
 
         vehicle.setId(id);
         vehicleService.updateVehicle(vehicle);
+        return ResponseEntity.status(204).build();
     }
 
     @DeleteMapping("/{id}")
-    public void deleteVehicle(@PathVariable Integer id) {
+    public ResponseEntity<Void> deleteVehicle(@PathVariable Integer id) {
 
         if (id == null) {
-            ResponseEntity.badRequest().build();
+            return ResponseEntity.badRequest().build();
         }
 
         //if delete id is not found
         if (vehicleService.getVehicle(id) == null) {
-            ResponseEntity.notFound().build();
+            return ResponseEntity.notFound().build();
         }
 
         vehicleService.deleteVehicle(id);
+        return ResponseEntity.status(204).build();
     }
 
 
