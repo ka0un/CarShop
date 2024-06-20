@@ -53,6 +53,7 @@ public class VehicleController {
 
         vehicleService.addVehicle(vehicle);
         return ResponseEntity.status(201).build();
+
     }
 
     @PutMapping("/{id}")
@@ -67,9 +68,9 @@ public class VehicleController {
             return ResponseEntity.notFound().build();
         }
 
-        vehicle.setId(id);
         vehicleService.updateVehicle(vehicle);
         return ResponseEntity.status(204).build();
+
     }
 
     @DeleteMapping("/{id}")
