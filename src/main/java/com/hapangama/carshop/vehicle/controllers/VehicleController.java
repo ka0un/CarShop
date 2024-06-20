@@ -4,6 +4,7 @@ import com.hapangama.carshop.vehicle.model.Vehicle;
 import com.hapangama.carshop.vehicle.service.VehicleService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.rest.webmvc.BasePathAwareController;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,13 +12,14 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/vehicles")
+@RequestMapping("/api/v1/vehicles")
 public class VehicleController {
     private final VehicleService vehicleService;
 
     public VehicleController(VehicleService vehicleService) {
         this.vehicleService = vehicleService;
     }
+
 
     @GetMapping
     public ResponseEntity<Page<Vehicle>>  getAllVehicles(Pageable pageable) {
