@@ -4,11 +4,12 @@
 <mapper namespace="com.hapangama.carshop.vehicle.infrastructure.repository.VehicleMapper"> <!--@Mapper Interface-->
 
     <resultMap id="VehicleResult" type="com.hapangama.carshop.vehicle.model.Vehicle">
-        <id column="id"/>
+<!--    <id/result property="fieldname" column="sqlcolumnname"/>-->
+        <id property="id" column="id"/>
         <result property="name" column="name"/>
         <result property="vehicleBrand" column="vehicle_brand"/>
         <result property="vehicleType" column="vehicle_type"/>
-        <result property="year" column="year"/>
+        <result property="vehicleYear" column="year"/>
     </resultMap>
 
     <select id="findById" resultMap="VehicleResult">
