@@ -9,7 +9,7 @@
         <result property="name" column="name"/>
         <result property="vehicleBrand" column="vehicle_brand"/>
         <result property="vehicleType" column="vehicle_type"/>
-        <result property="vehicleYear" column="year"/>
+        <result property="vehicleYear" column="vehicle_year"/>
     </resultMap>
 
     <select id="findById" resultMap="VehicleResult">
