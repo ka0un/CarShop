@@ -3,6 +3,8 @@ package com.hapangama.carshop.vehicle.infrastructure.repository;
 import com.hapangama.carshop.vehicle.model.Vehicle;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 

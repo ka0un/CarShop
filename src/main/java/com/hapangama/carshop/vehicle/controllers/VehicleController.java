@@ -2,6 +2,8 @@ package com.hapangama.carshop.vehicle.controllers;
 
 import com.hapangama.carshop.vehicle.model.Vehicle;
 import com.hapangama.carshop.vehicle.service.VehicleService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,14 +20,18 @@ public class VehicleController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Vehicle>>  getAllVehicles() {
+    public ResponseEntity<Page<Vehicle>>  getAllVehicles(Pageable pageable) {
+        Page<Vehicle> vehicles = vehicleService.getVehicles(pageable);
 
-        //handle exceptions
-        if (vehicleService.getVehicles().isEmpty()) {
+        if (vehicles == null) {
             return ResponseEntity.status(404).build();
         }
 
-        return ResponseEntity.ok(vehicleService.getVehicles());
+        if (vehicles.isEmpty() || vehicles.getSize() == 0) {
+            return ResponseEntity.status(404).build();
+        }
+
+        return ResponseEntity.ok(vehicles);
     }
 
     @GetMapping("/{id}")
