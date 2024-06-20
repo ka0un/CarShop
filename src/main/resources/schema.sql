@@ -1,4 +1,4 @@
-CREATE TABLE Vehicle (
+CREATE TABLE IF NOT EXISTS Vehicle (
                          id INT AUTO_INCREMENT PRIMARY KEY,
                          name VARCHAR(255),
                          vehicle_brand VARCHAR(255),
