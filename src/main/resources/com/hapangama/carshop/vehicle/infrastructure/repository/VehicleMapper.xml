@@ -33,4 +33,12 @@
         SELECT * FROM Vehicle
     </select>
 
+
+    <select id="findAllWithSorting" resultMap="VehicleResult">
+        SELECT * FROM Vehicle
+        ORDER BY ${field} ${order}
+    </select>
+
+
+
 </mapper>

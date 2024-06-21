@@ -1,6 +1,7 @@
 package com.hapangama.carshop.vehicle.service;
 
 import com.hapangama.carshop.vehicle.model.Vehicle;
+import com.hapangama.carshop.vehicle.util.SortOrder;
 import com.hapangama.carshop.vehicle.util.VehicleBrand;
 import com.hapangama.carshop.vehicle.util.VehicleType;
 import org.springframework.data.domain.Page;
@@ -19,5 +20,9 @@ public interface VehicleService {
     Vehicle getVehicle(Integer id);
 
     Page<Vehicle> getVehicles(Pageable pageable);
+
+    Page<Vehicle> getVehiclesWithSorting(String field, SortOrder sortOrder, Pageable pageable);
+
+//    Page<Vehicle> findVehiclesByNameAndBrand(String name, VehicleBrand brand, Pageable pageable);
 
 }
