@@ -1,11 +1,9 @@
-package com.hapangama.carshop.vehicle.serviceimpl;
+package com.hapangama.carshop.serviceimpl;
 
-import com.hapangama.carshop.vehicle.infrastructure.repository.VehicleMapper;
-import com.hapangama.carshop.vehicle.model.Vehicle;
-import com.hapangama.carshop.vehicle.repositories.VehicleRepository;
-import com.hapangama.carshop.vehicle.service.VehicleService;
-import com.hapangama.carshop.vehicle.util.SortOrder;
-import com.hapangama.carshop.vehicle.util.VehicleBrand;
+import com.hapangama.carshop.repository.VehicleMapper;
+import com.hapangama.carshop.domian.Vehicle;
+import com.hapangama.carshop.service.VehicleService;
+import com.hapangama.carshop.util.SortOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;

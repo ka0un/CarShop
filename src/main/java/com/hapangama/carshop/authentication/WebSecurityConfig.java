@@ -1,4 +1,4 @@
-package com.hapangama.carshop.config;
+package com.hapangama.carshop.authentication;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

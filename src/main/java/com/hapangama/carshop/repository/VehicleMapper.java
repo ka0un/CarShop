@@ -1,9 +1,8 @@
-package com.hapangama.carshop.vehicle.infrastructure.repository;
+package com.hapangama.carshop.repository;
 
-import com.hapangama.carshop.vehicle.model.Vehicle;
+import com.hapangama.carshop.domian.Vehicle;
 import org.apache.ibatis.annotations.Mapper;
 
-import javax.swing.*;
 import java.util.List;
 
 @Mapper

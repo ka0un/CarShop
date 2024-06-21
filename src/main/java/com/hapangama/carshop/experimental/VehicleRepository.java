@@ -1,9 +1,8 @@
-package com.hapangama.carshop.vehicle.repositories;
+package com.hapangama.carshop.experimental;
 
-import com.hapangama.carshop.vehicle.model.Vehicle;
-import com.hapangama.carshop.vehicle.util.VehicleBrand;
+import com.hapangama.carshop.domian.Vehicle;
+import com.hapangama.carshop.util.VehicleBrand;
 import org.springframework.data.mybatis.repository.MybatisRepository;
-import org.springframework.stereotype.Repository;
 
 
 import java.util.List;

@@ -1,17 +1,13 @@
-package com.hapangama.carshop.vehicle.controllers;
+package com.hapangama.carshop.controllers;
 
-import com.hapangama.carshop.vehicle.model.Vehicle;
-import com.hapangama.carshop.vehicle.service.VehicleService;
-import com.hapangama.carshop.vehicle.util.SortOrder;
-import com.hapangama.carshop.vehicle.util.VehicleBrand;
+import com.hapangama.carshop.domian.Vehicle;
+import com.hapangama.carshop.service.VehicleService;
+import com.hapangama.carshop.util.SortOrder;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.rest.webmvc.BasePathAwareController;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 
 @RestController

@@ -1,7 +1,7 @@
-package com.hapangama.carshop.vehicle.model;
+package com.hapangama.carshop.domian;
 
-import com.hapangama.carshop.vehicle.util.VehicleBrand;
-import com.hapangama.carshop.vehicle.util.VehicleType;
+import com.hapangama.carshop.util.VehicleBrand;
+import com.hapangama.carshop.util.VehicleType;
 import lombok.Data;
 
 

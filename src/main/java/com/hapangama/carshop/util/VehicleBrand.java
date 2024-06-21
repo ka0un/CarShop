@@ -1,4 +1,4 @@
-package com.hapangama.carshop.vehicle.util;
+package com.hapangama.carshop.util;
 
 public enum VehicleBrand {
     BMW,
