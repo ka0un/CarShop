@@ -43,7 +43,7 @@ public class VehicleServiceImpl implements VehicleService {
     }
 
     @Override
-    public Page<Vehicle> getVehicles(Pageable pageable) {
+    public Page<Vehicle> getVehicles(Pageable pageable) throws IllegalArgumentException {
         List<Vehicle> vehicles = vehicleMapper.findAll();
         int start = (int) pageable.getOffset();
         int end = Math.min((start + pageable.getPageSize()), vehicles.size());
@@ -59,7 +59,7 @@ public class VehicleServiceImpl implements VehicleService {
 //    }
 
     @Override
-    public Page<Vehicle> getVehiclesWithSorting(String field, SortOrder sortOrder, Pageable pageable) {
+    public Page<Vehicle> getVehiclesWithSorting(String field, SortOrder sortOrder, Pageable pageable) throws IllegalArgumentException {
         List<Vehicle> vehicles = vehicleMapper.findAllWithSorting(field, sortOrder.toString());
         int start = (int) pageable.getOffset();
         int end = Math.min((start + pageable.getPageSize()), vehicles.size());

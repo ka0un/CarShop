@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS Vehicle (
                          vehicle_year VARCHAR(4)
 );
 
-CREATE TABLE User (
+CREATE TABLE IF NOT EXISTS UserDetails (
                       username VARCHAR(255) NOT NULL PRIMARY KEY,
                       password VARCHAR(255) NOT NULL,
                       role ENUM('ADMIN', 'BUYER', 'SELLER') NOT NULL

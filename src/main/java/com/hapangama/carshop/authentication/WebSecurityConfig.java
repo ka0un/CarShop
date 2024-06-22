@@ -20,36 +20,38 @@ import java.util.List;
 @EnableWebSecurity
 public class WebSecurityConfig {
 
-    @Autowired
-    private UserService userService;
-
-    @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userService).passwordEncoder(bCryptPasswordEncoder());
-    }
-    @Bean
-    public BCryptPasswordEncoder bCryptPasswordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+//    @Autowired
+//    private UserService userService;
+//
+//    @Autowired
+//    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+//        auth.userDetailsService(userService).passwordEncoder(bCryptPasswordEncoder());
+//    }
+//    @Bean
+//    public BCryptPasswordEncoder bCryptPasswordEncoder() {
+//        return new BCryptPasswordEncoder();
+//    }
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
 
-        return http.build();
+        //disable csrf
+        return http.csrf(csrf -> csrf.disable()).build();
+
     }
 
-    @Bean
-    public CorsConfigurationSource corsConfigurationSource() {
-        var configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(List.of("*")); // Access-Control-Allow-Origin
-        configuration.setAllowedMethods(List.of("*")); // Access-Control-Allow-Methods
-        configuration.setAllowedHeaders(List.of("*")); // Access-Control-Allow-Headers
-        configuration.setAllowCredentials(true); // Access-Control-Allow-Credentials
-        configuration.setMaxAge((long) 60 * 60 * 24);
-        var source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", configuration);
-
-        return source;
-    }
+//    @Bean
+//    public CorsConfigurationSource corsConfigurationSource() {
+//        var configuration = new CorsConfiguration();
+//        configuration.setAllowedOrigins(List.of("*")); // Access-Control-Allow-Origin
+//        configuration.setAllowedMethods(List.of("*")); // Access-Control-Allow-Methods
+//        configuration.setAllowedHeaders(List.of("*")); // Access-Control-Allow-Headers
+//        configuration.setAllowCredentials(true); // Access-Control-Allow-Credentials
+//        configuration.setMaxAge((long) 60 * 60 * 24);
+//        var source = new UrlBasedCorsConfigurationSource();
+//        source.registerCorsConfiguration("/**", configuration);
+//
+//        return source;
+//    }
 }

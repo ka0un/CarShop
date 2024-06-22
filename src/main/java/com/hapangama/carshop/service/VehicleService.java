@@ -15,9 +15,9 @@ public interface VehicleService {
 
     Vehicle getVehicle(Integer id);
 
-    Page<Vehicle> getVehicles(Pageable pageable);
+    Page<Vehicle> getVehicles(Pageable pageable) throws IllegalArgumentException;
 
-    Page<Vehicle> getVehiclesWithSorting(String field, SortOrder sortOrder, Pageable pageable);
+    Page<Vehicle> getVehiclesWithSorting(String field, SortOrder sortOrder, Pageable pageable) throws IllegalArgumentException;
 
 //    Page<Vehicle> findVehiclesByNameAndBrand(String name, VehicleBrand brand, Pageable pageable);
 

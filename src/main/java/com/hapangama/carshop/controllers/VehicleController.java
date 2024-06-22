@@ -3,6 +3,7 @@ package com.hapangama.carshop.controllers;
 import com.hapangama.carshop.domian.Vehicle;
 import com.hapangama.carshop.service.VehicleService;
 import com.hapangama.carshop.util.SortOrder;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -15,20 +16,35 @@ import org.springframework.web.bind.annotation.*;
 public class VehicleController {
     private final VehicleService vehicleService;
 
+
     public VehicleController(VehicleService vehicleService) {
         this.vehicleService = vehicleService;
     }
 
 
     @GetMapping
-    public ResponseEntity<Page<Vehicle>>  getAllVehicles(Pageable pageable) {
-        Page<Vehicle> vehicles = vehicleService.getVehicles(pageable);
+    public ResponseEntity<Page<Vehicle>> getAllVehicles(
+            @RequestParam(required = false) String field,
+            @RequestParam(required = false) String order,
+            Pageable pageable) {
 
-        if (vehicles == null) {
-            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        Page<Vehicle> vehicles;
+
+        try {
+
+            if (field != null && order != null) {
+                SortOrder sortOrder = SortOrder.valueOf(order);
+                vehicles = vehicleService.getVehiclesWithSorting(field, sortOrder, pageable);
+            } else {
+                vehicles = vehicleService.getVehicles(pageable);
+            }
+
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().build();
         }
 
-        if (vehicles.isEmpty() || vehicles.getSize() == 0) {
+
+        if (vehicles == null || vehicles.isEmpty() || vehicles.getSize() == 0) {
             return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
         }
 
@@ -96,61 +112,7 @@ public class VehicleController {
         return ResponseEntity.status(HttpStatus.RESET_CONTENT).build();
     }
 
-//    @GetMapping("/search")
-//    public ResponseEntity<Page<Vehicle>> findVehiclesByNameAndBrand(@RequestParam String name, @RequestParam String brand, Pageable pageable) {
-//
-//        if (name == null || brand == null) {
-//            return ResponseEntity.badRequest().build();
-//        }
-//
-//        VehicleBrand vehicleBrand = VehicleBrand.valueOf(brand);
-//
-//        Page<Vehicle> vehicles = vehicleService.findVehiclesByNameAndBrand(name, vehicleBrand, pageable);
-//
-//        if (vehicles == null) {
-//            return ResponseEntity.status(404).build();
-//        }
-//
-//        if (vehicles.isEmpty() || vehicles.getSize() == 0) {
-//            return ResponseEntity.status(404).build();
-//        }
-//
-//        return ResponseEntity.ok(vehicles);
-//    }
 
-    //sort
-    @GetMapping("/sort/{field}/{order}")
-    public ResponseEntity<Page<Vehicle>> getVehiclesWithSorting(@PathVariable String field, @PathVariable String order, Pageable pageable) {
-
-        SortOrder sortOrder;
-
-        try {
-
-            if (field == null) {
-                return ResponseEntity.badRequest().build();
-            }
-
-            if (order == null || order.isEmpty()) {
-                sortOrder = SortOrder.ASC;
-            } else {
-                sortOrder = SortOrder.valueOf(order);
-            }
-
-        }catch (NullPointerException e) {
-            return ResponseEntity.badRequest().build();
-        }catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }
-
-        Page<Vehicle> vehicles = vehicleService.getVehiclesWithSorting(field, sortOrder, pageable);
-
-
-        if (vehicles == null || vehicles.isEmpty() || vehicles.getSize() == 0) {
-                return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
-        }
-
-        return ResponseEntity.ok(vehicles);
-    }
 
 
 
