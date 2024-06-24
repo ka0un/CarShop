@@ -37,7 +37,8 @@ public class SecurityConfiguration {
                         .anyRequest().permitAll()
 
                 )
-                .httpBasic(Customizer.withDefaults());
+                .formLogin(Customizer.withDefaults()).logout(Customizer.withDefaults());
+
         return http.build();
     }
 
